@@ -13,7 +13,7 @@ namespace treeTest
 
         public MainWindow()
         {
-            Nodes = new ObservableCollection<Node>() { new Node(@"C:\Users\T\Desktop\txts") };
+            Nodes = new ObservableCollection<Node>() { new Node(@"C:\Users\T\source\repos\plc-soldier-wpf") };
 
             InitializeComponent();
 
