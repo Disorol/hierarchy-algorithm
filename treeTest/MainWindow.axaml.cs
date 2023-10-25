@@ -53,10 +53,10 @@ namespace treeTest
         // The path to this file. Maybe Null for empty folders.
         public string? PathString { get; set; }
 
-        // The path to the icon. 
+        // The path to the icon. Maybe Null for empty folders.
         public Bitmap? Icon { get; set; }
 
-        // Overloaded Constructor for the directory path. Maybe Null for empty folders.
+        // Overloaded Constructor for the directory path.
         public Node(string path)
         {
             PathString = path;
