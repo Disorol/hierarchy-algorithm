@@ -11,7 +11,11 @@
   <TreeView x:Name="TreeExample">
     <TreeView.ItemTemplate>
       <TreeDataTemplate ItemsSource="{Binding Subfiles}" x:DataType="xxx:Node">
-        <TextBlock Text="{Binding Title}"/>
+        <DockPanel>
+          <Image Width="10" Height="10" Source="{Binding Icon}" />
+          <TextBlock Text=" " />
+          <TextBlock Text="{Binding Title}"/>
+        </DockPanel>
       </TreeDataTemplate>
     </TreeView.ItemTemplate>
   </TreeView>

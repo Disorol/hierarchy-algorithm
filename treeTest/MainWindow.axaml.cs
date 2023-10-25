@@ -3,7 +3,13 @@ using System.Collections.ObjectModel;
 using System;
 using System.Xml.Linq;
 using System.IO;
+using System.Net.Http;
 using Avalonia.Controls.Shapes;
+using Avalonia.Platform;
+using Avalonia.Media.Imaging;
+using Avalonia;
+using Avalonia.Skia.Helpers;
+using treeTest.Models;
 
 namespace treeTest
 {
@@ -19,12 +25,6 @@ namespace treeTest
 
             TreeExample.ItemsSource = Nodes;
         }
-
-        public ObservableCollection<Node> GetSubfolders(Node nodeObject)
-        {
-
-            return new ObservableCollection<Node>();
-        }
     }
 
     /*
@@ -37,18 +37,23 @@ namespace treeTest
         // Collection of child files for this directory. Can be Null for storing files.
         public ObservableCollection<Node>? Subfiles { get; set; }
 
-        // File or directory title. Maybe Null so that empty folders can be opened.
+        // File or directory title. Maybe Null for empty folders.
         public string? Title { get; set; }
 
-        // The path to this file. Maybe Null so that empty folders can be opened.
+        // The path to this file. Maybe Null for empty folders.
         public string? PathString { get; set; }
 
-        // Overloaded Constructor for the directory path.
+        // The path to the icon. 
+        public Bitmap? Icon { get; set; }
+
+        // Overloaded Constructor for the directory path. Maybe Null for empty folders.
         public Node(string path)
         {
             PathString = path;
 
             Title = System.IO.Path.GetFileName(path);
+
+            Icon = new Bitmap(AssetLoader.Open(new Uri("avares://treeTest/icons/dock.png")));
 
             Subfiles = new ObservableCollection<Node>();
 
@@ -90,6 +95,10 @@ namespace treeTest
             PathString = path;
 
             Title = System.IO.Path.GetFileName(path);
+
+            FileInfo fileInfo = new FileInfo(path);
+
+            Icon = new Bitmap(AssetLoader.Open(ExtensionToIcon.GetIcon(fileInfo.Extension)));
         }
 
         // Overloaded constructor for opening empty directories
