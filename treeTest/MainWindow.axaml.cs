@@ -11,6 +11,16 @@ using Avalonia;
 using Avalonia.Skia.Helpers;
 using treeTest.Models;
 
+/* 
+    In order for the icon paths specified in the project to work,
+    you should add a connection string for all files in the icons 
+    folder to the project file:
+
+    <ItemGroup>
+        <AvaloniaResource Include="icons\**" />
+    </ItemGroup>
+ */
+
 namespace treeTest
 {
     public partial class MainWindow : Window
